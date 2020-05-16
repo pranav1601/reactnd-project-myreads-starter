@@ -22,7 +22,6 @@ class BooksApp extends React.Component {
         books
       }))
     ))
-    console.log(this.state.books)
   }
 
   render() {
@@ -54,7 +53,7 @@ class BooksApp extends React.Component {
         )}/>
         <Route exact path='/' render={({history})=>(
         <div className="list-books">
-          <BookList/>  
+          <BookList books={this.state.books}/>  
           <div className="open-search">
             <button onClick={() => history.push('/search')}>Add a book</button>
           </div>
