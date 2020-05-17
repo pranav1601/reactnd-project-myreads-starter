@@ -18,4 +18,4 @@ This project aims to keep an organised check on states of the book mainly-
 
 The main page also includes a button to navigate to the source page where you can find various other books on the basis of your search.
 
-You can then shift those books into your shelves by categorizing them acoording to the status of the completion of the books.
+You can then shift those books into your shelves by categorizing them according to the status of the completion of the books.
