@@ -12,7 +12,6 @@ class BooksList extends Component{
                 <div className="list-books-title">
                     <h1>MyReads</h1>
                 </div>
-                {/* {console.log(this.shelfBooks(books,"currentlyReading"))} */}
                 <div className="list-books-content">
                     <BookShelf books={this.shelfBooks(books,'currentlyReading') } shelf='currentlyReading' updateShelf={updateShelf}/>
                     <BookShelf books={this.shelfBooks(books,'wantToRead')} shelf='wantToRead' updateShelf={updateShelf}/>

@@ -2,6 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import {Route} from 'react-router-dom';
 import BookList from './BooksList';
+import Search from './Search';
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -28,12 +29,19 @@ class BooksApp extends React.Component {
     BooksAPI.update(book, shelf).then(books => {
       console.log(books);
     });
-    const updatedBooks = this.state.books.map(b => {
+    let found=0
+    let updatedBooks = this.state.books.map(b => {
       if (b.id === book.id) {
         b.shelf = shelf;
+        found=1
       }
       return b;
     });
+
+    if(found===0){
+      book.shelf=shelf
+      updatedBooks=updatedBooks.concat(book);
+    }
 
     this.setState({
       books: updatedBooks,
@@ -44,27 +52,9 @@ class BooksApp extends React.Component {
     return (
       
       <div className="app">
-        {console.log(this.state.books)}
         <Route path='/search' render ={({history})=>(
           <div className="search-books">
-          <div className="search-books-bar">
-            <button className="close-search" onClick={() => history.push('/')}>Close</button>
-            <div className="search-books-input-wrapper">
-              {/*
-                NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                You can find these search terms here:
-                https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-                However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                you don't find a specific author or title. Every search is limited by search terms.
-              */}
-              <input type="text" placeholder="Search by title or author"/>
-
-            </div>
-          </div>
-          <div className="search-books-results">
-            <ol className="books-grid"></ol>
-          </div>
+          <Search history={history} books={this.state.books} updateShelf={this.updateShelf}/>
         </div>
         )}/>
         <Route exact path='/' render={({history})=>(

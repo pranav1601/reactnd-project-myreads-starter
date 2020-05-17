@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import BookShelfChanger from './BookShelfChanger';
+import BookShelfList from './BookShelfList'
 
 class BookShelf extends Component{
     render(){
@@ -10,21 +10,7 @@ class BookShelf extends Component{
                         <h2 className="bookshelf-title">{shelf}</h2>
                         <div className="bookshelf-books">
                         <ol className="books-grid">
-                        {books.map((book)=>{
-                            const {imageLinks,authors,title,id}=book
-                            return(
-                            <li key={id}>
-                            <div className="book">
-                            <div className="book-top">
-                            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("'+imageLinks.smallThumbnail+'")' }}></div>
-                            <BookShelfChanger book={book} shelf={shelf} updateShelf={updateShelf}/>
-                            </div>
-                            <div className="book-title">{title}</div>
-                            <div className="book-authors">{authors.map((author)=>author+'\n')}</div>
-                            </div>
-                            </li>
-                        )})}
-                            
+                            <BookShelfList books={books} shelf={shelf} updateShelf={updateShelf}/>
                         </ol>
                         </div>
                     </div>
