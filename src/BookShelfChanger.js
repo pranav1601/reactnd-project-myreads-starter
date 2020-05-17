@@ -1,24 +1,20 @@
-import React,{Component} from 'react';
+import React from 'react';
 
-class BookShelfChanger extends Component{
-    handleUpdate=(e)=>{
-        this.props.updateShelf(this.props.book,e.target.value)
+const BookShelfChanger=(props)=>{
+    const handleUpdate=(e)=>{
+        props.updateShelf(props.book,e.target.value)
     }
-
-    render(){
-        
-        return(
-            <div className="book-shelf-changer">
-                <select value={this.props.shelf} onChange={this.handleUpdate}>
+    return(
+        <div className="book-shelf-changer">
+                <select value={props.shelf} onChange={handleUpdate}>
                     <option value="move" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
                     <option value="read">Read</option>
                     <option value="none">None</option>
-                    </select>
-                </div>
-        )
-    }
+                </select>
+        </div>
+    )
 }
 
 export default BookShelfChanger;
